@@ -3,7 +3,7 @@ from fpdf import FPDF
 class PDF(FPDF):
     def header(self):
         self.set_font('Arial', 'B', 12)
-        self.cell(0, 10, 'Retail Store Internal Policy & Inventory', 0, 1, 'C')
+        self.cell(0, 10, 'Retail Store Master Policy & Operations', 0, 1, 'C')
 
 def create_dummy_pdf():
     pdf = PDF()
@@ -11,35 +11,36 @@ def create_dummy_pdf():
     pdf.set_font("Arial", size=12)
     
     text = """
-    1. COLD WEATHER PROTOCOL:
-    If a customer mentions feeling cold, suggest hot beverages. 
-    Current promotions:
-    - 10% off Hot Cocoa at the in-store Starbucks (Zone B).
-    - "Winter Warmer" bundle: Scarf + Coffee for $15.
-    
-    2. RAINY WEATHER PROTOCOL:
-    If it is raining, offer:
-    - Free umbrella rental with any purchase over $50.
-    - Direction to the nearest covered parking (Zone A).
+    1. CONTEXTUAL PROMOTIONS (WEATHER):
+    - Cold/Snow: Offer "Winter Warmer Bundle" ($15 Scarf+Coffee).
+    - Rain: Offer Free Umbrella rental (Deposit $5).
+    - Hot/Sunny: Suggest Iced Lemonade at the Cafe (Zone A).
 
-    3. STORE LOCATIONS:
-    - Starbucks: 50m from entrance, Zone B.
-    - Uniqlo: 2nd Floor, near the escalator.
-    - Restrooms: Behind the customer service desk.
-    
-    4. RETURN POLICY:
-    - Electronics: 15 days with receipt.
-    - Clothing: 30 days with tags attached.
-    - No returns on food items.
+    2. RETURN & EXCHANGE POLICY:
+    - Electronics (e.g., iPhones, Headphones): Returnable within 14 days if sealed.
+    - Clothing: 30 days with tags.
+    - Clearance Items: Final Sale (No returns).
+    - No Receipt? Store credit only.
+
+    3. STORE NAVIGATION & ZONES:
+    - Zone A: Entrance, Cafe, Men's Wear.
+    - Zone B: Electronics, Starbucks, Escalator.
+    - Zone C: Kids section, Restrooms, "Lost & Found".
+
+    4. MEMBERSHIP TIERS:
+    - Silver: 2% cashback.
+    - Gold: 5% cashback + Free Coffee.
+    - Platinum: 10% cashback + Personal Shopper.
+
+    5. CRISIS PROTOCOLS:
+    - Lost Child: Escort to "Lost & Found" (Zone C) immediately. Alert Security.
+    - Spill/Mess: Call maintenance on channel 4. Block area.
     """
     
+    # Write text
     pdf.multi_cell(0, 10, text)
     pdf.output("store_policy.pdf")
-    print("✅ 'store_policy.pdf' created successfully.")
+    print("✅ Expanded 'store_policy.pdf' created.")
 
 if __name__ == "__main__":
-    try:
-        import fpdf
-        create_dummy_pdf()
-    except ImportError:
-        print("Please run: pip install fpdf")
+    create_dummy_pdf()

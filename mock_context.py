@@ -1,20 +1,40 @@
+import random
+
 def get_live_context(user_id="user_123"):
+    # Scenarios representing different user states
+    scenarios = [
+        {
+            "location": {"zone": "Zone A (Entrance)", "nearby": "Cafe, Men's Wear"},
+            "weather": "Sunny & Hot",
+            "stock_status": "Sunglasses are on sale"
+        },
+        {
+            "location": {"zone": "Zone B (Electronics)", "nearby": "Apple Store, Starbucks"},
+            "weather": "Rainy",
+            "stock_status": "Umbrellas in stock"
+        },
+        {
+            "location": {"zone": "Zone C (Kids)", "nearby": "Restrooms, Lost & Found"},
+            "weather": "Cloudy",
+            "stock_status": "Toy Sale active"
+        }
+    ]
+    
+    # Pick a random scenario to simulate "Real Life" changes
+    current_scenario = random.choice(scenarios)
+
     return {
         "user_profile": {
-            "name": "Deepak",
-            "membership_tier": "Gold",
-            "preferences": ["Coffee", "Tech Gadgets"]
+            "name": "Ayush",
+            "membership_tier": "Platinum", # Changed to Platinum to test perks
+            "preferences": ["Tech", "Coffee"]
         },
-        "current_location": {
-            "zone": "Zone B",
-            "nearby_landmarks": ["Starbucks (50m)", "Restrooms (20m)"]
-        },
+        "current_location": current_scenario["location"],
         "environment": {
-            "weather": "Rainy",
-            "temperature": "18°C"
+            "weather": current_scenario["weather"],
+            "temperature": "22°C"
         },
         "store_inventory": {
-            "promotions": ["10% off Hot Cocoa", "Free Umbrella rental"],
-            "stock_alerts": ["iPhone 15 Pro is out of stock"]
+            "stock_alert": current_scenario["stock_status"]
         }
     }

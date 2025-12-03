@@ -54,8 +54,12 @@ prompt = ChatPromptTemplate.from_template(template)
 
 @cl.on_chat_start
 async def start():
-    # This runs when you open the browser
-    msg = cl.Message(content="👋 Hello Deepak! I'm your Local Store Assistant (Running Privacy-First). How can I help?")
+    # 1. Fetch the data first
+    live_data = get_live_context()
+    user_name = live_data['user_profile']['name'] # This grabs "Ayush" automatically
+    
+    # 2. Use f-string to insert the name
+    msg = cl.Message(content=f"👋 Hello {user_name}! I see you're a {live_data['user_profile']['membership_tier']} member. How can I help?")
     await msg.send()
 
 @cl.on_message
