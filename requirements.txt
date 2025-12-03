@@ -1,0 +1,11 @@
+langchain-community
+langchain-huggingface
+langchain-ollama
+chromadb
+pypdf
+sentence-transformers
+presidio-analyzer
+presidio-anonymizer
+spacy
+chainlit
+fpdf
